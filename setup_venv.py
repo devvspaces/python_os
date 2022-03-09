@@ -2,7 +2,7 @@ import subprocess, sys
 
 
 # get the name for the virtual enviroment
-env = sys.argv[0]
+env = sys.argv[1]
 
 # Create the virtual enviroment
 process = subprocess.run(['virtualenv', env], capture_output=True, text=True)
