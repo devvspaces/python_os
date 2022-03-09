@@ -1,8 +1,10 @@
 import subprocess, sys
+from pathlib import Path
 
 
 # get the name for the virtual enviroment
 env = sys.argv[1]
+REQUIREMENT = 'requirement.txt'
 
 # Create the virtual enviroment
 process = subprocess.run(['virtualenv', env], capture_output=True, text=True)
@@ -12,19 +14,24 @@ if process.returncode == 0:
 
     pip_bin = f'{env}/bin/pip3'
 
-    # Install requirements.txt
-    process = subprocess.run([f'{pip_bin} install -r requirement.txt'], capture_output=True, text=True)
+    # Check if REQUIREMENT file existed
+    if Path(REQUIREMENT).exists():
+        # Install requirements.txt
+        process = subprocess.run([f'{pip_bin} install -r {REQUIREMENT}'], capture_output=True, text=True)
 
-    if process.returncode == 0:
-        print('Installed packages in requirements.txt')
+        if process.returncode == 0:
+            print('Installed packages in requirements.txt')
 
-        print(process.stdout)
+            print(process.stdout)
 
-        print(f'Process completed! Now activate your environment with "source {env}/bin/activate"')
+            print(f'Process completed! Now activate your environment with "source {env}/bin/activate"')
+        
+        else:
+            print('Error while installing packages')
+            print(process.stderr)
     
     else:
-        print('Error while installing packages')
-        print(process.stderr)
+        print(f"{REQUIREMENT} file does not exist")
 
 else:
     print('Error while creating virtual enviroment')
