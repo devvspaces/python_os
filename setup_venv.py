@@ -17,7 +17,7 @@ if process.returncode == 0:
         print(f'Activating enviroment {env}')
 
         # Install requirements.txt
-        process = subprocess.run(f"source {env}/bin/activate"], capture_output=True, shell=True)
+        process = subprocess.run(f"source {env}/bin/activate", capture_output=True, shell=True)
 
         if process.returncode == 0:
             print('Installing packages in requirements.txt')
