@@ -10,26 +10,20 @@ process = subprocess.run(['virtualenv', env], capture_output=True, text=True)
 if process.returncode == 0:
     print(f"Successfully created virtual enviroment {env}")
 
-    # Activate the virtual enviroment
-    process = subprocess.run(['source', f"{env}/bin/activate"], check=True)
+    pip_bin = f'{env}/bin/pip3'
+
+    # Install requirements.txt
+    process = subprocess.run([f'{pip_bin} install -r requirement.txt'], capture_output=True, text=True)
 
     if process.returncode == 0:
-        print(f'Activated enviroment {env}')
+        print('Installed packages in requirements.txt')
 
-        # Install requirements.txt
-        process = subprocess.run(['pip install -r requirement.txt'], capture_output=True, text=True)
+        print(process.stdout)
 
-        if process.returncode == 0:
-            print('Installed packages in requirements.txt')
-
-            print(process.stdout)
-        
-        else:
-            print('Error while installing packages')
-            print(process.stderr)
-        
+        print(f'Process completed! Now activate your environment with "source {env}/bin/activate"')
+    
     else:
-        print('Error while activating virtual enviroment')
+        print('Error while installing packages')
         print(process.stderr)
 
 else:
