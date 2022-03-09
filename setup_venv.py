@@ -17,7 +17,7 @@ if process.returncode == 0:
     # Check if REQUIREMENT file existed
     if Path(REQUIREMENT).exists():
         # Install requirements.txt
-        process = subprocess.run([f'{pip_bin} install -r {REQUIREMENT}'], capture_output=True, text=True)
+        process = subprocess.run([f'{pip_bin} install -r {REQUIREMENT}'], capture_output=True, shell=True)
 
         if process.returncode == 0:
             print('Installed packages in requirements.txt')
