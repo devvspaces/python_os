@@ -17,7 +17,7 @@ def change_permissions(args, filename):
   
     data = subprocess.Popen([ls, '-l', filename], stdout = subprocess.PIPE)
   
-    output = data.communicate()[0].decode()
+    output = str(data.communicate())
   
     print('file permissions before chmod % s: ' %(args))
     print(output)
@@ -29,7 +29,7 @@ def change_permissions(args, filename):
     # file after chmod
     data = subprocess.Popen([ls, '-l', filename], stdout = subprocess.PIPE)
   
-    output = data.communicate()[0].decode()
+    output = str(data.communicate())
   
     # printing the permissions after chmod
     print('file permissions after chmod % s: ' %(args))
