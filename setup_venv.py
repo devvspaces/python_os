@@ -11,7 +11,7 @@ if process.returncode == 0:
     print(f"Successfully created virtual enviroment {env}")
 
     # Activate the virtual enviroment
-    process = subprocess.run(['source', f"{env}/bin/activate"], shell=True)
+    process = subprocess.run(['source', f"{env}/bin/activate"], check=True)
 
     if process.returncode == 0:
         print(f'Activated enviroment {env}')
