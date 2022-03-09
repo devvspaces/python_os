@@ -15,7 +15,7 @@ if process.returncode != 0:
 python_location = process.stdout.strip()
 
 # Create the virtual enviroment
-process = subprocess.run(['{python_location} -m venv', env], capture_output=True, text=True)
+process = subprocess.run([f'{python_location} -m venv', env], capture_output=True, shell=True)
 
 if process.returncode == 0:
     print(f"Successfully created virtual enviroment {env}")
