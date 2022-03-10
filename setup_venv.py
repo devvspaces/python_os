@@ -4,7 +4,7 @@ from pathlib import Path
 
 # get the name for the virtual enviroment
 env = sys.argv[1]
-REQUIREMENT = 'requirement.txt'
+REQUIREMENT = sys.argv[2] if sys.argv[2] else 'requirements.txt'
 
 # Get python location
 process = subprocess.run(shlex.split('which python3'), capture_output=True, text=True)
