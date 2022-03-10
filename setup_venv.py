@@ -7,7 +7,7 @@ env = sys.argv[1]
 REQUIREMENT = 'requirement.txt'
 
 # Get python location
-process = subprocess.run('which python3', capture_output=True, text=True, shell=True)
+process = subprocess.run(shlex.split('which python3'), capture_output=True, text=True)
 
 if process.returncode != 0:
     raise OSError('Sorry python3 is not installed')
@@ -15,7 +15,7 @@ if process.returncode != 0:
 python_location = process.stdout.strip()
 
 # Create the virtual enviroment
-process = subprocess.run([f'{python_location} -m venv', env], capture_output=True, shell=True)
+process = subprocess.run(shlex.split(f'{python_location} -m venv {env}'), capture_output=True)
 
 if process.returncode == 0:
     print(f"Successfully created virtual enviroment {env}")
@@ -25,7 +25,7 @@ if process.returncode == 0:
     # Check if REQUIREMENT file existed
     if Path(REQUIREMENT).exists():
         # Install requirements.txt
-        process = subprocess.run([f'{pip_bin} install -r {REQUIREMENT}'], capture_output=True, shell=True, text=True)
+        process = subprocess.run(shlex.split(f'{pip_bin} install -r {REQUIREMENT}'), capture_output=True, text=True)
 
         if process.returncode == 0:
             print('Installed packages in requirements.txt')
