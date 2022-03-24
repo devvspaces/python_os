@@ -1,7 +1,7 @@
 import json, subprocess, os, re, shlex
 def get_website_logs(log_path):
 
-    command = f"sudo cat {log_path}"
+    command = f"sudo -S cat {log_path}"
     team_pass = 'TeamSpacePen@2021'
 
     # Split commands with shlex
