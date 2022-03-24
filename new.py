@@ -66,8 +66,8 @@ def get_enabled_sites():
             # Arrange data in a dict and append to results_list
             data = {
                 'file_name': file,
-                'file_name': log_name,
-                'file_name': link,
+                'log': log_name,
+                'url': link,
             }
 
             results_list.append(data)
