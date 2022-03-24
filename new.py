@@ -18,7 +18,7 @@ def get_enabled_sites():
         result = process.stdout
 
         # Use regex to filter out result
-        results = re.findall(r'.+.conf', text)
+        results = re.findall(r'.+.conf', result)
 
         # Remove ssl configurations
         file_names = [i for i in results if 'le-ssl' not in i]
